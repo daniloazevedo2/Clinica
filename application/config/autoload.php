@@ -9,6 +9,8 @@ $autoload['drivers'] = array();
 
 $autoload['helper'] = array('url');
 
+$autoload['helper'] = array();
+
 $autoload['config'] = array();
 
 $autoload['language'] = array();
