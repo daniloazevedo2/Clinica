@@ -27,7 +27,7 @@
               </li>
              
               <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a class="nav-link" href="<?= base_url?>usuario">
                   <span data-feather="users"></span>
                   Usuários
                 </a>

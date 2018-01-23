@@ -6,7 +6,7 @@ class Usuario extends CI_Controller {
 	{
 		$this->load->view('includes/html_header');
 		$this->load->view('includes/menu');
-		$this->load->view('lisatar_usuario');
+		$this->load->view('listar_usuario');
 		$this->load->view('includes/html_footer');
 	}
 }
