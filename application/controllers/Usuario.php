@@ -9,4 +9,12 @@ class Usuario extends CI_Controller {
 		$this->load->view('listar_usuario');
 		$this->load->view('includes/html_footer');
 	}
+
+	public function cadastro()
+	{
+		$this->load->view('includes/html_header');
+		$this->load->view('includes/menu');
+		$this->load->view('cadastro_usuario');
+		$this->load->view('includes/html_footer');
+	}
 }
