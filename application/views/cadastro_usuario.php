@@ -3,7 +3,7 @@
         <h3>Novo Usuário</h1>
     </div>
     <div class="col-md-12">
-        <form>
+        <form class="form-control" action="<?= base_url() ?>usuario/cadastrar" method="post">
             <div class="form-group">
                 <label for="nome">Nome: </label>
                 <input type="nome" class="form-control" name="nome" id="nome" placeholder="Informe o nome..." required>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-2">
                     <label for="nivel">Nível: </label>
-                    <select id="nivel" class="form-control">
+                    <select id="nivel" class="form-control" name="nivel">
                         <option value="0"> --- </option>
                         <option value="1"> Administrador </option>
                         <option value="2"> Usuário </option>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-2">
                     <label for="status">Status: </label>
-                    <select id="status" class="form-control">
+                    <select id="status" class="form-control" name="status">
                         <option value="0"> ---</option>
                         <option value="1"> Ativo</option>
                         <option value="2"> Inativo</option>
