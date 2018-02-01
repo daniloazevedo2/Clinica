@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Usuario extends CI_Controller {
 
     public function index($indice = null) {
+        $this->db->select('*');
+        $dados['usuario'] = $this->db->get('usuario')->result();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         if ($indice == 1) {
@@ -14,7 +16,7 @@ class Usuario extends CI_Controller {
              $data['msg'] = "Não foi possível cadastrar o usuário.";
             $this->load->view('includes/msg_erro',$data);
         }
-        $this->load->view('listar_usuario');
+        $this->load->view('listar_usuario', $dados);
         $this->load->view('includes/html_footer');
     }
 
