@@ -16,6 +16,13 @@ class Usuario extends CI_Controller {
              $data['msg'] = "Não foi possível cadastrar o usuário.";
             $this->load->view('includes/msg_erro',$data);
         }
+        if ($indice == 3) {
+            $data['msg'] = "Usuário excluído com sucesso!.";
+            $this->load->view('includes/msg_sucesso',$data);
+        } else if ($indice == 4){
+             $data['msg'] = "Não foi possível excluir o usuário.";
+            $this->load->view('includes/msg_erro',$data);
+        }
         $this->load->view('listar_usuario', $dados);
         $this->load->view('includes/html_footer');
     }
@@ -40,6 +47,16 @@ class Usuario extends CI_Controller {
             redirect('usuario/1');
         } else {
             redirect('usuario/2');
+        }
+    }
+
+    public function excluir($id=null) {
+        $this->db->where('id',$id);
+
+        if ($this->db->delete('usuario')) {
+            redirect('usuario/3');
+        } else {
+            redirect('usuario/4');
         }
     }
 

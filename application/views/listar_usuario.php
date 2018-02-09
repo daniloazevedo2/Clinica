@@ -13,9 +13,8 @@
   			<th>Nome</th>
   			<th>Email</th>
   			<th>Nivel</th>
-  			<th>Status</th>  	
-  			<th></th>
-  			<th></th>		
+  			<th>Status</th>
+  			<th></th>	
   		</tr>
   		<?php foreach($usuario as $usu) { ?>
   		<tr>

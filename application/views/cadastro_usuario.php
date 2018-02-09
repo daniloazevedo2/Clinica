@@ -3,7 +3,6 @@
         <h3>Novo Usuário</h1>
     </div>
     <br>
-    <div class="col-md-12">
         <form class="form-control" action="<?= base_url() ?>usuario/cadastrar" method="post">
             <div class="form-group">
                 <label for="nome">Nome: </label>
@@ -62,6 +61,5 @@
             </div>
             <br>
         </form>
-    </div>
 </main>
 
