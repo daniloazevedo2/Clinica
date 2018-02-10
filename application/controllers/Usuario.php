@@ -65,12 +65,19 @@ class Usuario extends CI_Controller {
         }
     }
 
-    public function atualizar($id = null) {
+    public function atualizar($id = null, $indice=null) {
         $this->db->where('id', $id);
         $data['usuario'] = $this->db->get('usuario')->result();
 
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
+        if ($indice == 1) {
+            $data['msg'] = "Senha alterada com sucesso";
+            $this->load->view('includes/msg_sucesso', $data);
+        } else if ($indice == 2) {
+            $data['msg'] = "Falha ao alterar senha!";
+            $this->load->view('includes/msg_erro', $data);
+        }
         $this->load->view('atualizar_usuario', $data);
         $this->load->view('includes/html_footer');
     }
@@ -91,5 +98,25 @@ class Usuario extends CI_Controller {
             redirect('usuario/6');
         }
     }
+
+    public function alterar_senha() {
+     $id = $this->input->post('id');
+     $senha_antiga = md5($this->input->post('senha_antiga'));
+     $nova_senha = md5($this->input->post('nova_senha'));
+
+     $this->db->select('senha');
+     $this->db->where('id',$id);
+     $data['senha'] = $this->db->get('usuario')->result();
+     $dados['senha'] = $nova_senha;
+
+     if ($data['senha'][0]->senha == $senha_antiga) {
+        $this->db->where('id',$id);
+        $this->db->update('usuario', $dados)
+        redirect('usuario/atualizar/'.$id.'/1');
+    } else {
+         redirect('usuario/atualizar/'.$id.'/2');
+ }
+
+}
 
 }

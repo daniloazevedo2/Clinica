@@ -1,8 +1,8 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h3>Novo Usuário</h1>
-    </div>
-    <br>
+        </div>
+        <br>
         <form class="form-control" action="<?= base_url() ?>usuario/cadastrar" method="post">
             <div class="form-group">
                 <label for="nome">Nome: </label>
@@ -61,5 +61,5 @@
             </div>
             <br>
         </form>
-</main>
+    </main>
 

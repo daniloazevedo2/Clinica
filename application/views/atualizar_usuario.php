@@ -1,8 +1,8 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
         <h3>Atualizar Usuário</h1>
-    </div>
-    <br>
+        </div>
+        <br>
         <form class="form-control" action="<?= base_url() ?>usuario/salvar_atualizacao" method="post">
             <input type="hidden" id="id" name="id" value="<?= $usuario[0]->id;?>">
             <div class="form-group">
@@ -43,7 +43,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="senha">Senha: </label>
-                        <input type="button" class="btn btn-default btn-block" value="Alterar senha" disabled>
+                        <input type="button" class="btn btn-default btn-block" value="Alterar senha" data-toggle="modal" data-target="#myModal">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -62,5 +62,72 @@
             </div>
             <br>
         </form>
-</main>
+    </main>
 
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+         <form action="<?= base_url()?>usuario/alterar_senha" method="post">
+             <input type="hidden" id="id" name="id" value="<?= $usuario[0]->id;?>">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <h4 class="modal-title" id="myModalLabel">Alterar Senha</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="senha_antiga">Senha antiga:</label>
+                        <input type="password" name="senha_antiga" id="senha_antiga" onkeyup="checarSenha()" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="nova_senha">Nova senha:</label>
+                        <input type="password" name="nova_senha" id="nova_senha" onkeyup="checarSenha()" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label for="confirmar_senha">Confirmar senha:</label>
+                        <input type="password" name="confirmar_senha" id="confirmar_senha" onkeyup="checarSenha()" class="form-control">
+                    </div>
+                    <div class="col-md-12 form-group">
+                     <div id="divcheck">
+
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary" id="enviarsenha" disabled>Salvar alterações</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#nova_senha").keyup(checarSenha);
+        $("#confirmar_senha").keyup(checarSenha);
+    });
+    function checarSenha(){
+        var oldPassword = $("#senha_antiga").val();
+        var password = $("#nova_senha").val();
+        var confirmPassword = $("#confirmar_senha").val();
+
+        if (password == '' || '' == confirmPassword || '' == oldPassword){
+            $("#divcheck").html("<span style='color: orange'>Preencha todos os campos!</span>");
+            document.getElementById("enviarsenha").disabled = true;
+        }
+        else if (password != confirmPassword) {
+            $("#divcheck").html("<span style='color: red'>Senhas não conferem!</span>");
+            document.getElementById("enviarsenha").disabled = true;
+        } else {
+            $("#divcheck").html("<span style='color: green'>Senhas iguais!</span>");
+            document.getElementById("enviarsenha").disabled = false;
+        }
+    }
+</script>
