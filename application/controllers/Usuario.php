@@ -4,7 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Controller {
 
+    public function verificar_sessao() {
+        if ($this->session->userdata('logado')==false) {
+            redirect('home/login');
+        }       
+    }
     public function index($indice = null) {
+        $this->verificar_sessao();
         $this->db->select('*');
         $dados['usuario'] = $this->db->get('usuario')->result();
         $this->load->view('includes/html_header');
@@ -33,6 +39,7 @@ class Usuario extends CI_Controller {
     }
 
     public function cadastro() {
+        $this->verificar_sessao();
         $this->load->view('includes/html_header');
         $this->load->view('includes/menu');
         $this->load->view('cadastro_usuario');
@@ -40,6 +47,7 @@ class Usuario extends CI_Controller {
     }
 
     public function cadastrar() {
+        $this->verificar_sessao();
         $data['nome'] = $this->input->post('nome');
         $data['cpf'] = $this->input->post('cpf');
         $data['endereco'] = $this->input->post('endereco');
@@ -56,6 +64,7 @@ class Usuario extends CI_Controller {
     }
 
     public function excluir($id = null) {
+        $this->verificar_sessao();
         $this->db->where('id', $id);
 
         if ($this->db->delete('usuario')) {
@@ -66,6 +75,7 @@ class Usuario extends CI_Controller {
     }
 
     public function atualizar($id = null, $indice = null) {
+        $this->verificar_sessao();
         $this->db->where('id', $id);
         $data['usuario'] = $this->db->get('usuario')->result();
 
@@ -83,6 +93,7 @@ class Usuario extends CI_Controller {
     }
 
     public function salvar_atualizacao() {
+        $this->verificar_sessao();
         $id = $this->input->post('id');
         $data['nome'] = $this->input->post('nome');
         $data['cpf'] = $this->input->post('cpf');
@@ -100,6 +111,7 @@ class Usuario extends CI_Controller {
     }
 
     public function alterar_senha() {
+        $this->verificar_sessao();
         $id = $this->input->post('id');
         $senha_antiga = md5($this->input->post('senha_antiga'));
         $nova_senha = md5($this->input->post('nova_senha'));
