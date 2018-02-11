@@ -65,7 +65,7 @@ class Usuario extends CI_Controller {
         }
     }
 
-    public function atualizar($id = null, $indice=null) {
+    public function atualizar($id = null, $indice = null) {
         $this->db->where('id', $id);
         $data['usuario'] = $this->db->get('usuario')->result();
 
@@ -100,23 +100,22 @@ class Usuario extends CI_Controller {
     }
 
     public function alterar_senha() {
-     $id = $this->input->post('id');
-     $senha_antiga = md5($this->input->post('senha_antiga'));
-     $nova_senha = md5($this->input->post('nova_senha'));
+        $id = $this->input->post('id');
+        $senha_antiga = md5($this->input->post('senha_antiga'));
+        $nova_senha = md5($this->input->post('nova_senha'));
 
-     $this->db->select('senha');
-     $this->db->where('id',$id);
-     $data['senha'] = $this->db->get('usuario')->result();
-     $dados['senha'] = $nova_senha;
+        $this->db->select('senha');
+        $this->db->where('id', $id);
+        $data['senha'] = $this->db->get('usuario')->result();
+        $dados['senha'] = $nova_senha;
 
-     if ($data['senha'][0]->senha == $senha_antiga) {
-        $this->db->where('id',$id);
-        $this->db->update('usuario', $dados)
-        redirect('usuario/atualizar/'.$id.'/1');
-    } else {
-         redirect('usuario/atualizar/'.$id.'/2');
- }
-
-}
+        if ($data['senha'][0]->senha == $senha_antiga) {
+            $this->db->where('id', $id);
+            $this->db->update('usuario', $dados);
+            redirect('usuario/atualizar/'.$id.'/1');
+        } else {
+            redirect('usuario/atualizar/'.$id. '/2');
+        }
+    }
 
 }
