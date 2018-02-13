@@ -15,6 +15,7 @@ class Usuario_model extends CI_Model{
 		$data['senha'] = md5($this->input->post('senha'));
 		$data['status'] = $this->input->post('status');
 		$data['nivel'] = $this->input->post('nivel');
+		$data['dataNascimento'] = implode('-',array_reverse(explode('/',$this->input->post('datanascimento'))));
 
 		return $this->db->insert('usuario', $data); 
 	}
@@ -36,36 +37,37 @@ class Usuario_model extends CI_Model{
 		$data['email'] = $this->input->post('email');
 		$data['status'] = $this->input->post('status');
 		$data['nivel'] = $this->input->post('nivel');
+		$data['dataNascimento'] = implode('-',array_reverse(explode('/',$this->input->post('datanascimento'))));
 
 		$this->db->where('id', $id);
 		return $this->db->update('usuario', $data); 
 	}
 
-	 public function alterar_senha() {
+	public function alterar_senha() {
 
-        $id = $this->input->post('id');
-        $senha_antiga = md5($this->input->post('senha_antiga'));
-        $nova_senha = md5($this->input->post('nova_senha'));
+		$id = $this->input->post('id');
+		$senha_antiga = md5($this->input->post('senha_antiga'));
+		$nova_senha = md5($this->input->post('nova_senha'));
 
-        $this->db->select('senha');
-        $this->db->where('id', $id);
-        $data['senha'] = $this->db->get('usuario')->result();
-        $dados['senha'] = $nova_senha;
+		$this->db->select('senha');
+		$this->db->where('id', $id);
+		$data['senha'] = $this->db->get('usuario')->result();
+		$dados['senha'] = $nova_senha;
 
-        if ($data['senha'][0]->senha == $senha_antiga) {
-            $this->db->where('id', $id);
-            $this->db->update('usuario', $dados);
-            
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if ($data['senha'][0]->senha == $senha_antiga) {
+			$this->db->where('id', $id);
+			$this->db->update('usuario', $dados);
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    function get_usuarios(){
-    	$this->db->select('*');
-        return $this->db->get('usuario')->result();
-    }
+	function get_usuarios(){
+		$this->db->select('*');
+		return $this->db->get('usuario')->result();
+	}
 
 
 }

@@ -13,13 +13,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="cpf">CPF: </label>
-                        <input type="cpf" class="form-control" name="cpf" id="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" onkeyup="somenteNumeros(this);" placeholder="Informe o CPF..." required>
+                        <input type="text" class="form-control" name="cpf" id="cpf" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" onkeyup="somenteNumeros(this);" placeholder="Informe o CPF..." required>
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
                         <label for="endereco">Endereço: </label>
-                        <input type="endereco" class="form-control" name="endereco" id="endereco" placeholder="Informe o endereço..." required>
+                        <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Informe o endereço..." required>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -52,6 +52,12 @@
                         <option value="1"> Ativo</option>
                         <option value="2"> Inativo</option>
                     </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="datanascimento">Data de nascimento: </label>
+                        <input type="text" class="form-control" name="datanascimento" id="datanascimento" placeholder="00/00/0000" required>
+                    </div>
                 </div>
             </div>
 
